@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mimikubedemo-deployment
+  labels:
+    app: mimikubedemo
+spec:
+  replicas: 3  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: mimikubedemo
+  template:
+    metadata:
+      labels:
+        app: mimikubedemo
+    spec:
+      containers:
+      - name: mimikubedemo
+        image: mvcdemojenkins:v1.0  # Use the latest Nginx image from Docker Hub
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80  # The port that Nginx is listening on inside the container

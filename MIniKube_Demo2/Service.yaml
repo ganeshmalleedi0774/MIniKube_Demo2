@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimikubedemo-service
+  labels:
+    app: mimikubedemo
+spec:
+  type: NodePort  # Use NodePort to expose the service on a port on each node
+  selector:
+    app: mimikubedemo  # This should match the label in your Deployment
+  ports:
+    - protocol: TCP
+      port: 80          # The port that the service will expose internally
+      targetPort: 80    # The port on the container that the service will route traffic to
+      nodePort: 30001   # Optional: Port on each node to expose the service (range 30000-32767)
